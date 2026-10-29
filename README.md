@@ -25,6 +25,7 @@ La documentación se lee como un informe, en orden:
 - [Glosario](docs/glosario.md)
 - [Contratos de integración entre módulos](docs/contratos/_plantilla.md) · [Comercial](docs/contratos/comercial.md)
 - [Fuente: resumen del TO-BE comercial](docs/fuentes/to-be-comercial.md)
+- [Guía: acceso y aplicaciones — entrega de B](docs/guias/acceso-aplicaciones.md)
 - [Guía: CI con GitHub Actions](docs/guias/ci.md)
 - [Bitácora de sesiones](BITACORA.md)
 - [Contexto vivo del proyecto](docs/contexto.md) *(interno)*
@@ -60,4 +61,4 @@ Los comandos viven en `docs/comandos/` como Markdown, así que sirven con cualqu
 
 ## Ejecución
 
-*(se completa cuando exista el primer entregable funcional)*
+Interfaz de demostración: abre `src/Erp.Api/wwwroot/index.html` en Chrome o Edge. No requiere servidor. Consulta la [guía de ejecución y comprobación](docs/guias/acceso-aplicaciones.md). La API aún no existe.
