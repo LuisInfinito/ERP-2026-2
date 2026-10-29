@@ -1,0 +1,19 @@
+# ID|Título|Etiqueta|Dueños|Estimación por persona (h)|Prioridad|Día objetivo|Depende de|Criterio de aceptación
+S1-01|Crear el repositorio, el tablero y cargar las tarjetas del sprint|configuracion|A|A:1.0|Núcleo|Jue 29/10|-|Repo en GitHub con esta estructura, tablero con las columnas y las tarjetas cargadas; B y C lo pueden clonar
+S1-02|Instalar .NET SDK, SQL Server y editor, y clonar el repositorio|configuracion|B,C|B:1.5/C:1.5|Núcleo|Jue 29/10|S1-01|`dotnet --version` responde, se conectan a SQL Server y el repo está clonado
+S1-03|Practicar Git: rama, commit, push y PR con Closes #N|aprendizaje|B,C|B:0.5/C:0.5|Núcleo|Vie 30/10|S1-02|Cada uno agrega su nombre al README en un PR revisado por el otro y fusionado; la tarjeta se cierra sola
+S1-04|Crear el esqueleto de la solución modular (Api, Comercial, Compartido, Tests)|configuracion|A|A:1.0|Núcleo|Vie 30/10|S1-01|`dotnet build` y `dotnet test` en verde; global.json creado; la Api arranca; conexión local a SQL Server documentada en contexto.md
+S1-05|Modelar entidades y estados de Comercial, DbContext, primera migración y datos semilla|codigo|A|A:1.5|Núcleo|Sáb 31/10|S1-04|Migración aplicada en SQL Server; 8 muebles y la lista Retail vigente cargados; entidades y enums sin lógica
+S1-06|Aprender C# y SQL esenciales con ejercicios del dominio|aprendizaje|B,C|B:1.0/C:1.0|Núcleo|Sáb 31/10|S1-02|Resuelven y explican 5 ejercicios: filtrar productos, subtotal con IGV usando decimal, SELECT con JOIN
+S1-07|Aprender capas, inyección de dependencias y xUnit construyendo el endpoint de Cliente|aprendizaje|A,B,C|A:1.5/B:1.5/C:1.5|Núcleo|Dom 01/11|S1-05, S1-06|POST y GET /clientes recorren Api, Servicio y Datos; una prueba xUnit pasa; B y C explican qué hace cada capa
+S1-08|Implementar las reglas de Cliente (DNI 8, RUC 11, documento único) con pruebas|pruebas|B|B:1.5|Núcleo|Lun 02/11|S1-07|CLI-01 a CLI-03 están en el catálogo con al menos 4 pruebas pasando
+S1-09|Implementar la cotización: correlativo, vigencia, líneas con precio de lista e IGV 18 %|codigo|C|C:1.5|Núcleo|Lun 02/11|S1-07|COT-01 a COT-03 y PRE-01, PRE-02 en el catálogo con al menos 4 pruebas pasando
+S1-10|Implementar los estados de la cotización y sus transiciones válidas|pruebas|C|C:1.5|Núcleo|Mar 03/11|S1-09|COT-04 a COT-06 con al menos 4 pruebas, incluida una transición inválida rechazada
+S1-11|Implementar consulta de productos con lista vigente por canal y la oportunidad con productos|codigo|B|B:1.5|Núcleo|Mar 03/11|S1-05, S1-07|GET /productos devuelve precios de la lista vigente; POST /oportunidades crea en estado Nueva; OPO-01, OPO-02 y PRE-03 con prueba
+S1-12|Implementar el anticipo: registrar, confirmar con rol Tesorería simulado y marcar Pago validado|codigo|A|A:1.5|Núcleo|Lun 02/11|S1-07|PAG-01 a PAG-05 en el catálogo con al menos 4 pruebas pasando
+S1-13|Implementar la conversión de cotización a orden de venta con bloqueo sin pago validado|codigo|A|A:1.5|Núcleo|Mar 03/11|S1-12|OV-01 a OV-05 en el catálogo con al menos 4 pruebas pasando
+S1-14|Conectar las piezas, probar de punta a punta y ensayar la demo|pruebas|A,B,C|A:1.0/B:1.0/C:1.0|Núcleo|Mié 04/11|S1-08, S1-09, S1-10, S1-11, S1-12, S1-13|El guion de demo recorre cliente, oportunidad, cotización, anticipo y OV sin errores dos veces seguidas
+S1-15|Escribir el capítulo semana-01 y crear el tag|docs|A|A:0.5|Núcleo|Mié 04/11|S1-14|docs/capitulos/semana-01.md completo y tag semana-01 creado
+S1-16|Crear pantalla mínima (HTML + Bootstrap + fetch) con selector de rol simulado|codigo|B,C|B:1.0/C:1.0|Si alcanza|—|S1-14|Una página permite recorrer el camino feliz sin usar Swagger
+S1-17|Configurar CI con GitHub Actions|configuracion|A|A:1.0|Si alcanza|—|S1-04|Un PR de prueba con una prueba rota se marca en rojo y uno sano en verde (ver docs/guias/ci.md)
+S1-18|Crear vista imprimible de la cotización|codigo|B|B:1.0|Si alcanza|—|S1-10|La cotización se imprime o guarda como PDF desde el navegador con correlativo, líneas e IGV
