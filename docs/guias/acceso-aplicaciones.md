@@ -33,6 +33,6 @@ Cuando exista Erp.Api, estos archivos podrán servirse desde su carpeta wwwroot 
 
 ## Validación y aceptación
 
-`node --check src/Erp.Api/wwwroot/aplicaciones.js` y `git diff --check` pasaron. La comprobación funcional en navegador no se ejecutó: falta Chromium y su descarga fue rechazada por la política de red (cdn.playwright.dev, HTTP 403). Quedan pendientes las comprobaciones manuales anteriores. Esto no constituye una prueba de reglas de negocio ni una validación del ERP completo. La aceptación visual y funcional corresponde a Luis antes de preparar la integración con el repositorio de Miguel.
+`node --check src/Erp.Api/wwwroot/aplicaciones.js` y `git diff --check` pasaron. La comprobación funcional en navegador no se ejecutó: falta Chromium y su descarga fue rechazada por la política de red (cdn.playwright.dev, HTTP 403). Luis confirmó manualmente el 29/10/2026 que ingreso, filtrado y cierre de sesión funcionan correctamente. Los demás escenarios de la guía (incluidos teclado y vista móvil) quedan pendientes de confirmación. Esto no constituye una prueba de reglas de negocio ni una validación del ERP completo. Luis aprobó el cierre de esta entrega; sigue pendiente la revisión de integración por Miguel.
 
-Pendiente: revisión de Luis, acuerdo del catálogo final de áreas y posterior conexión con la API. No hay PR ni integración al original en esta entrega.
+Pendiente: revisión de Miguel, acuerdo del catálogo final de áreas y posterior conexión con la API. El PR se prepara desde `LuisInfinito: b/acceso-aplicaciones` hacia `miguelr296/ERP-2026-2: main`. La creación mediante API devolvió Forbidden; queda pendiente abrirlo en GitHub. No se ha integrado al original.
