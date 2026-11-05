@@ -1,0 +1,77 @@
+# Bitácora de sesiones
+
+[← Índice](README.md)
+
+Una entrada por sesión, la más reciente arriba. Tres líneas bastan; el nombre y las horas son obligatorios (los usa la retro).
+
+## Plantilla
+
+```
+### AAAA-MM-DD · Nombre · horas h · tarjeta
+- Hice:
+- Falló / dudas:
+- Siguiente paso exacto:
+```
+
+## Control semanal
+
+| Sprint | Área (fechas · demo) | Entregable (Sí/Parcial/No) | Horas Miguel | Horas Luis | Horas Pablo | Qué queda como pendiente del área |
+|---|---|---|---|---|---|---|
+| Prep. | Preparación (29/10 – 02/11) | Parcial | | | | S1-01, S1-04, S1-05 y S1-08 hechas; Cliente (S1-07, S1-10) y S1-09 pasan al sprint 1 |
+| 1 | Comercial (03/11 – 09/11 · demo 10/11) | | | | | |
+| 2 | Logística, por confirmar (10/11 – 16/11 · demo 17/11) | | | | | |
+
+## Sesiones
+
+### 2026-11-03 · Miguel · — h · planning del sprint 1 (Comercial)
+- Hice: planifiqué el sprint 1 (Comercial) de una semana: martes 03/11 – lunes 09/11, demo martes 10/11, con 3 h diarias por persona planificadas a ≈ 2 h (D07, D08). Núcleo: 22 tarjetas (cliente → oportunidad → cotización con descuento aprobado → anticipo confirmado → OV, con cadena, ficha, pantalla de trazabilidad y CI) y 3 *Si alcanza* (listas de precios, tablero por rol, indicadores); S1-70 para organizar el tablero por sprint y por área. Las otras 38 tarjetas del TO-BE Comercial quedan con el área que las resolverá: Logística, Finanzas, Planta o pendientes de Comercial (Postventa, leads, PDF, notificaciones, indicadores de operación), documentadas en el alcance de cada área (`docs/alcance/comercial.md`, `logistica.md`, `finanzas.md` y `planta.md`) y resumidas en `docs/plan/sprints.md` 5.6. Actualicé decisiones, sprints, sprint-01, kanban (6.7), flujo, arquitectura, contratos, reglas, glosario, comandos, contexto, AGENTS y README.
+- Falló / dudas: Cliente (S1-07, S1-10) no llegó a `main` en la preparación; pasa al primer día del sprint. Falta confirmar si S1-02, S1-03 y S1-06 están en Done y qué área toca en el sprint 2.
+- Siguiente paso exacto: S1-70 (Miguel, 0,5 h): organizar el tablero según `docs/plan/kanban.md` 6.7; luego S1-09 (cadena, 1 h) y S1-07 con Luis y Pablo (1,5 h).
+
+### 2026-11-01 · Miguel · 2 h · S1-08
+- Hice: implementé el historial de estados en Compartido: entidad `HistorialEstado`, contrato `IHistorialDeEstados` (carpeta `Contratos/`), servicio con validaciones, repositorio con EF Core, tabla `compartido.HistorialEstado` y su migración; 3 pruebas en verde. Registré las piezas en la Api y dejé TRZ-01 y TRZ-03 en ✅; TRZ-04 sigue pendiente porque la protección del borrado corresponde al módulo dueño de cada documento.
+- Falló / dudas: Cliente (S1-07/S1-10) sigue en Ready y S1-08 se terminó hoy. La prueba de TRZ-04 solo cubría el servicio, así que se renombró y la regla volvió a pendiente.
+- Siguiente paso exacto: subir el PR de S1-08 y, en la próxima sesión, S1-09 (cadena documental, 1 h).
+
+### 2026-11-01 · Miguel · 0,5 h · S1-05
+- Hice: corregí la migración rechazada por SQL Server ("multiple cascade paths") con `DeleteBehavior.NoAction` y borrado lógico (D25); regeneré y apliqué `InicialComercial`; migré las pruebas a xUnit v3 con Microsoft.Testing.Platform (`global.json` y `OutputType Exe` en `Erp.Tests`). Modifiqué D09, D25 y D26, agregué TRZ-04 y actualicé contexto, glosario y reglas.
+- Falló / dudas: el borrado en cascada de EF Core hizo fallar la primera migración; xUnit v3 se instaló por error en los proyectos de `src/`. El PR de S1-05 se fusionó antes de escribir esta documentación, así que va en un PR aparte.
+- Siguiente paso exacto: abrir el PR de documentación del cierre, fusionarlo, mover S1-05 a Done y empezar S1-08 (historial de estados, 1,5 h).
+
+### 2026-10-31 · Miguel · 2 h · S1-05
+- Hice: modelé las entidades de la venta retail de Comercial (Cliente, Oportunidad, Mueble, ListaPrecio, Cotizacion, Anticipo, OrdenVenta) y de Compartido (Sede, Usuario, Rol); creé el `ErpDbContext` con un esquema por módulo, la semilla y 3 pruebas; instalé EF Core y `dotnet-ef`.
+- Falló / dudas: la ubicación del contexto dejó abierto cómo encajar los repositorios; se resolvió el 01/11 (interfaz en el módulo, implementación en la Api). Los comandos de migración quedaron para el 01/11.
+- Siguiente paso exacto: generar la migración, aplicarla y verificar la semilla.
+
+### 2026-10-31 · Miguel · 0,5 h · S1-04 (esqueleto)
+
+- Hice: creé `Erp.sln` con 13 proyectos en `net10.0`: 11 de submódulo (uno por submódulo, con las carpetas `Api/`, `Servicios/` y `Datos/`), `Erp.Api` como único host y `Erp.Tests`. `Erp.Api` referencia a los 11 submódulos, sirve `wwwroot` en `/` y expone `/api/salud`; verificado en vivo (`/` y `estilos.css` en 200), `dotnet build` sin advertencias y `dotnet test` con 12 pruebas en verde. Edité a mano los 5 Issues pendientes. Escribí los borradores de contrato de Finanzas, Logística, Planta y Compartido, corregí la línea de `comercial.md` que trataba a Postventa como módulo, agregué 5 términos al glosario, modifiqué D09 (explicar cada término técnico nuevo) y registré D26 (estructura de la solución). Actualicé comandos y estado actual en `contexto.md`, y el índice y la ejecución del `README.md`.
+- Falló / dudas: la revisión de S1-00 sigue pendiente (Luis debe explicar los tres archivos del front). Sigue sin confirmarse la fuente y fecha del área Logística. La pantalla de acceso se probó por HTTP; falta abrirla a mano en Chrome o Edge.
+- Siguiente paso exacto: pedir a Luis o Pablo la revisión del PR `miguel/esqueleto`, fusionarlo y mover S1-04 a Done. Después: S1-05 (entidades y estados de Comercial, migración y datos semilla), que desbloquea S1-07 de todos.
+
+### 2026-10-31 · Miguel · — h · módulos y submódulos
+- Hice: dividimos cada módulo en submódulos (D03): Comercial (CRM, Ventas, Postventa), Finanzas (Tesorería, Créditos y Cobranzas, Facturación), Logística (Inventarios, Despacho), Planta (Ingeniería, Producción) y Compartido (Trazabilidad, Seguridad, Notificaciones). Postventa pasa a ser submódulo de Comercial y la evaluación de crédito pasa a Finanzas (D06). El anticipo se registra en Ventas; mientras Finanzas no tenga su sprint lo confirma Tesorería desde Ventas, y en el sprint de Finanzas la confirmación pasa a Finanzas › Tesorería (D17). Se actualizaron los criterios de S1-04, S1-15, S1-36, S1-50 y S1-61.
+- Falló / dudas: hay que editar a mano esos 5 Issues en GitHub, porque ya estaban cargados con el texto anterior.
+- Siguiente paso exacto: editar los 5 Issues; S1-04 (Miguel) con la nueva estructura de `docs/arquitectura.md` 3.2.
+
+### 2026-10-30 · Miguel · — h · tarjetas del TO-BE Comercial y trazabilidad
+- Hice: redactamos las tarjetas de todo el TO-BE Comercial: 70 (S1-00 a S1-69) con relaciones "bloqueada por"; cubren los 35 microprocesos. Las del núcleo forman el sprint 1 y las demás esperan el sprint del área que las resolverá (D06, D19). Cinco módulos (Comercial, Planta, Logistica, Finanzas, Postventa) (D03). La trazabilidad pasa a ser la prioridad: historial, cadena documental y ficha por documento (D25, reglas TRZ). La IA ya puede generar código sencillo, siempre pregunta antes y no crea ni modifica archivos sin permiso; modo tutor suspendido; explicar en /cierre sigue siendo obligatorio (D09). Estados completos de la OV aprobados (D15).
+- Falló / dudas: falta confirmar la fecha y la fuente del área Logística.
+- Después: el reparto pasa a seguir la experiencia (D20): Miguel lleva más horas, Luis es el segundo y Pablo el tercero.
+- Siguiente paso exacto: S1-01 (Miguel, vie 30/10): crear los campos del tablero según `docs/plan/kanban.md` 6.3 y cargar las tarjetas con `scripts/crear-tarjetas.sh`; luego S1-04. Luis y Pablo: S1-02, S1-03 y S1-06.
+
+### 2026-10-29 · Miguel · — h · reestructuración del flujo
+- Hice: audité el repo y reestructuré el flujo con el equipo: nombres en vez de letras (Miguel, Luis, Pablo); alcance por área (`docs/alcance/`) con Núcleo / Si alcanza / Simulado; TO-BE como fuente solo de Comercial; back y front confirmados (front HTML + CSS + JS, demo en pantalla y API); tablero de GitHub como fuente de verdad de las tarjetas (`sprint-01.md` reemplaza al CSV y a la tabla del kanban); ramas en el repo sin forks; regla para modificar decisiones con fecha (D24). Decisiones modificadas: D02, D07, D12, D13, D16, D18, D19; nuevas: D20–D24. Se quitaron las referencias al repositorio de referencia usado para crear el repo. Se adaptó la pantalla de Luis (código legible, textos según el plan) y se registró como S1-00.
+- Falló / dudas: falta conocer la fuente de verdad de Logística. El trabajo de Luis llegó a `main` sin PR; queda la revisión de S1-00.
+- Después: rehicimos las tarjetas del sprint 1 por integrante (cada uno su pieza con su pantalla; Miguel anticipo y OV; Pablo cotización y capítulo; Luis cliente y oportunidad; Luis y Pablo 2 h el miércoles) y agregamos el modo tutor contra el vibecoding (D09 modificada; D13 modificada por dueños de pantallas). `/iniciar` pregunta primero el nombre. Luego: las tareas Si alcanza también tienen tarjeta (S1-19 a S1-31, con origen en el TO-BE y reglas STK/DES/LEAD/MOR/CRE/MTO/DIS/FAC/REC en el catálogo); el script ahora agrega cada Issue al tablero, llena Priority, Size, Estimate, fechas, Sprint y Prioridad, y crea las relaciones Blocked by (D22 modificada).
+- Siguiente paso exacto: S1-01 (Miguel, vie 30/10): invitar a Luis y Pablo como colaboradores, configurar el tablero y crear los campos del tablero según `docs/plan/kanban.md` 6.3 y cargar las tarjetas con `scripts/crear-tarjetas.sh`; luego S1-04 y revisar S1-00 con Luis explicando su código.
+
+### 2026-10-29 · Luis · horas por anotar · S1-00 (adelantada)
+- Hice: preparé el acceso simulado con nombre y rol, selector de Comercial y Logística, filtro y salida; documenté ejecución y revisión manual. Trabajo adelantado, fuera del orden del kanban y sin tarjeta; se registró después como S1-00.
+- Falló / dudas: validación en navegador no hecha en ese momento; falta la revisión de Luis y de Miguel. La API y las pantallas internas siguen pendientes.
+- Siguiente paso exacto: Luis anota sus horas reales en esta entrada y hace S1-02; Miguel revisa S1-00.
+
+### 2026-10-28 · Miguel · — h · definición del flujo de trabajo
+- Hice: analizamos el TO-BE de FAMIHOGAR y definimos el flujo (sprints semanales, monolito modular, contratos entre módulos, reglas con fuente TO-BE); dejamos listos el plan, las decisiones D01–D19, el catálogo de 25 reglas y las 18 tarjetas del sprint 1.
+- Falló / dudas: falta confirmar la fecha de la primera presentación (29/10 o 05/11), el idioma de los identificadores (D16), el front (D13) y el anticipo de 50 % (D18). *(Resuelto el 29/10.)*
+- Siguiente paso exacto: S1-01: crear el repositorio en GitHub con esta estructura, el tablero y cargar las tarjetas con el script.
