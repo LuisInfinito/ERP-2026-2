@@ -1,20 +1,24 @@
 ---
 name: Tarjeta
-about: Una tarea de 1 a 1,5 h
+about: Tarea pequeña con resultado verificable
 labels: ''
 ---
 
-**ID:** S?-??
-**Tipo:** aprendizaje / codigo / pruebas / docs / configuracion
-**Dueño(s) y horas:** <!-- Miguel / Luis / Pablo -->
-**Prioridad:** Núcleo / Si alcanza · **Priority:** P0 / P1 / P2 · **Size:** S / M / L · **Estimate:** horas totales
-**Día objetivo:**
+**ID:**
+**Área y sprint:**
+**Dueño y horas:**
+**Prioridad:** Núcleo / Si alcanza
+**Inicio y fin:**
+**Dependencias:**
 
 ## Criterio de aceptación
-<!-- Una frase verificable -->
+Resultado visible y casos de rechazo.
 
-## Depende de
-<!-- #N o "—". Créala también en Relationships → Mark as blocked by -->
+## Evidencia prevista
+Pruebas, API, pantalla, historial/cadena/ficha si corresponde.
 
-## Reglas del catálogo que toca
-<!-- IDs de docs/reglas.md -->
+## Fuente y reglas
+Documento, versión y referencia; distinguir supuestos.
+
+## Estado
+Pendiente. Cambiar solo con evidencia.

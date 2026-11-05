@@ -1,12 +1,10 @@
-# /iniciar — Inicio de sesión: ubicarse y retomar el trabajo
+# /iniciar
 
-Antes de proponer nada:
-0. **Pregúntame primero quién soy** (Miguel, Luis o Pablo) y cuántas horas tengo hoy (hasta 3 h; el plan cuenta ≈ 2 h de tarjetas, D08). Todo lo demás se filtra por esa persona. Recuerda la regla general: no crees ni modificas ningún archivo sin preguntar (D09).
-1. Lee `AGENTS.md`, `docs/contexto.md`, las dos últimas entradas de `BITACORA.md`, el alcance del área actual (`docs/alcance/<area>.md`) y el borrador del sprint (`docs/plan/sprint-NN.md`).
-2. Pídeme el estado de Git: `git status -sb`, `git branch -a` y `git log --oneline -5`. No ejecutes comandos de Git.
-3. Pídeme el estado del tablero (es la fuente de verdad de las tarjetas): tarjetas en **In Progress** y las que pasaron a **Done** desde la última entrada de la bitácora. No asumas que el borrador del sprint está al día ni intentes leer el tablero por tu cuenta.
-4. Elige **mis** tarjetas del día según el tablero, el "Plan por día" del borrador del sprint y mis horas (una a la vez).
-5. Contrasta ese estado con la bitácora y el plan. Si hay una contradicción que cambie el siguiente paso, o trabajo hecho sin tarjeta, señálalo y pregúntame antes de decidir.
-6. Si hoy es un **punto de control** del sprint (ver la regla de recorte del alcance del área), recuérdamela y pregúntame el estado de las piezas.
-7. Resume en 10 líneas o menos: rama actual, mis PR pendientes (y los que debo revisar), mi último cierre, mi tarjeta de hoy y por qué (dependencias, aprendizaje justo a tiempo, pareja). Recuérdame en una línea qué debe quedar trazable en mi tarjeta (historial, cadena, ficha), si aplica.
-8. Propón el siguiente paso exacto y espera mi confirmación. No escribas archivos ni muevas tarjetas sin aprobación.
+[Índice](../../README.md)
+
+1. Preguntar integrante y horas disponibles, salvo que ya se conozcan.
+2. Leer AGENTS, contexto, bitácora, calendario y alcance vigente. Si no hay sesiones, partir del estado inicial.
+3. Consultar el estado del tablero mediante acceso de lectura autorizado o información del equipo. No inventar avances.
+4. Pedir al equipo el estado de rama y cambios cuando haga falta; no ejecutar Git sin autorización.
+5. Elegir una tarjeta desbloqueada por persona y explicar resultado, dependencias y evidencia requerida.
+6. Resumir el siguiente paso y actuar solo dentro del alcance autorizado.

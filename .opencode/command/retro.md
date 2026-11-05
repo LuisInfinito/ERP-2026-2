@@ -1,4 +1,4 @@
 ---
-description: Retro semanal y poda de contexto
+description: retro de sesión o sprint
 ---
-Lee y sigue al pie de la letra las instrucciones de `docs/comandos/retro.md`.
+Lee y sigue docs/comandos/retro.md respetando el alcance autorizado por el usuario.
