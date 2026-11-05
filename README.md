@@ -1,73 +1,35 @@
-# ERP FAMIHOGAR — prototipo por áreas
+# ERP FAMIHOGAR — inicio del proyecto
 
-Proyecto del curso de ERP. Equipo: **Miguel**, **Luis** y **Pablo**. Stack: C# (.NET) + SQL Server; front en HTML + CSS + JavaScript.
+Proyecto académico de Miguel, Luis y Pablo. Un área por sprint de una semana, de jueves a miércoles.
+**Comercial: 5–11 de noviembre de 2026.** Cierre y demo interna el 11; planning del área siguiente el 12. Una presentación de clase en otro día es una revisión intermedia, no cambia la duración del sprint.
 
-ERP web para **FAMIHOGAR SAC** (manufactura y retail de muebles, Perú), construido como **monolito modular** con cuatro módulos divididos en submódulos: Comercial (CRM, Ventas, Postventa), Finanzas, Logística y Planta. Se construye por áreas, **un área por sprint de una semana**, y se presenta cada martes en pantalla y por la API. El **sprint 1 (03/11 – 09/11) cubre el núcleo esencial del [TO-BE Comercial](docs/fuentes/to-be-comercial.md)**: la venta retail de punta a punta. La prioridad del sistema es la **trazabilidad**: cada documento guarda su historial, su cadena documental y tiene una ficha imprimible.
+## Punto de partida
+Solo se conserva el HTML, CSS y JavaScript de src/Erp.Api/wwwroot. Es material inicial de interfaz; no equivale a un módulo implementado.
+El PDF de Comercial se conserva como fuente de requisitos. La solución .NET, base, migraciones, pruebas y automatización se crearán como tareas del sprint 1.
+La interfaz puede abrirse directamente desde src/Erp.Api/wwwroot/index.html. Sus textos y roles son los del material conservado; su adecuación al nuevo sprint está planificada.
+Los comandos de backend solo serán válidos después de crear y validar la solución.
 
-## Cómo leer este repositorio
-
-La documentación se lee como un informe, en orden:
-
-### Parte I — Plan
-1. [Enfoque](docs/plan/enfoque.md)
-2. [Alcance: cómo se define](docs/plan/alcance.md)
-   - [Alcance del área Comercial](docs/alcance/comercial.md)
-   - [Alcance del área Logística](docs/alcance/logistica.md) *(por definir; parte de lo que el TO-BE Comercial le pide)*
-   - [Alcance del área Finanzas](docs/alcance/finanzas.md) *(por definir; parte de lo que el TO-BE Comercial le pide)*
-   - [Alcance del área Planta](docs/alcance/planta.md) *(por definir; parte de lo que el TO-BE Comercial le pide)*
-3. [Arquitectura](docs/arquitectura.md)
-4. [Flujo de trabajo](docs/plan/flujo-de-trabajo.md)
-5. [Sprints](docs/plan/sprints.md) · [Sprint 1: tarjetas y plan por día](docs/plan/sprint-01.md)
-6. [Tablero Kanban](docs/plan/kanban.md)
-
-### Parte II — Desarrollo (un capítulo por semana)
-- *(se agrega un capítulo cada semana a partir de la [plantilla](docs/capitulos/_plantilla.md))*
-
-### Anexos
-- [Catálogo de reglas de negocio](docs/reglas.md)
-- [Registro de decisiones](docs/decisiones.md)
+## Índice
+- [Guía del equipo](AGENTS.md)
+- [Enfoque](docs/plan/enfoque.md)
+- [Flujo de trabajo](docs/plan/flujo-de-trabajo.md)
+- [Calendario y definición de terminado](docs/plan/sprints.md)
+- [Método de alcance](docs/plan/alcance.md)
+- [Sprint 1: Comercial desde cero](docs/plan/sprint-01.md)
+- [Tablero Kanban](docs/plan/kanban.md)
+- [Alcance Comercial](docs/alcance/comercial.md)
+- [Arquitectura objetivo](docs/arquitectura.md)
+- [Plantilla de contrato](docs/contratos/_plantilla.md)
+- [Fuentes](docs/fuentes/README.md) · [Análisis del PDF](docs/fuentes/analisis-comercial.md)
+- [Catálogo de reglas](docs/reglas.md)
+- [Acuerdos de trabajo](docs/decisiones.md)
 - [Glosario](docs/glosario.md)
-- [Contratos de integración entre módulos](docs/contratos/_plantilla.md) · [Comercial](docs/contratos/comercial.md) · [Finanzas](docs/contratos/finanzas.md) · [Logística](docs/contratos/logistica.md) · [Planta](docs/contratos/planta.md) · [Compartido](docs/contratos/compartido.md)
-- [Fuente: resumen del TO-BE comercial](docs/fuentes/to-be-comercial.md)
-- [Guía: pantalla de acceso y aplicaciones](docs/guias/acceso-aplicaciones.md)
-- [Guía: CI con GitHub Actions](docs/guias/ci.md)
-- [Bitácora de sesiones](BITACORA.md)
-- [Contexto vivo del proyecto](docs/contexto.md) *(interno)*
-- [Comandos del asistente](docs/comandos/iniciar.md) (`/iniciar`, `/cierre`, `/retro`, `/planning`)
+- [Contexto inicial](docs/contexto.md)
+- [Bitácora](BITACORA.md)
+- [Plantilla del capítulo semanal](docs/capitulos/_plantilla.md)
+- [Preparación técnica](docs/guias/preparacion.md)
+- [Validación y CI](docs/guias/ci.md)
+- [Interfaz conservada](docs/guias/acceso-aplicaciones.md)
+- Comandos: [iniciar](docs/comandos/iniciar.md), [planning](docs/comandos/planning.md), [cierre](docs/comandos/cierre.md), [retro](docs/comandos/retro.md)
 
-## Cronología del código
-
-Cada semana cerrada se marca con un tag (`semana-01`, `semana-02`, …). Cada capítulo enlaza al tag de su semana.
-
-## Estructura
-
-```
-ERP-2026-2/
-├── README.md · AGENTS.md · BITACORA.md
-├── .opencode/command/      # comandos de OpenCode (apuntan a docs/comandos/)
-├── .github/                # plantillas de PR y de tarjeta
-├── docs/
-│   ├── plan/               # enfoque, alcance (método), flujo, sprints, kanban, sprint-NN
-│   ├── alcance/            # un alcance por área (comercial, logistica, …)
-│   ├── capitulos/          # un capítulo por semana
-│   ├── contratos/          # qué expone y consume cada módulo
-│   ├── fuentes/            # fuente de verdad de cada área (TO-BE comercial: resumen + PDF)
-│   ├── guias/              # guías cortas (pantalla de acceso, CI)
-│   ├── comandos/           # /iniciar /cierre /retro /planning (para cualquier asistente)
-│   ├── arquitectura.md · reglas.md · decisiones.md · glosario.md · contexto.md
-├── scripts/                # carga de tarjetas al tablero desde docs/plan/sprint-NN.md
-├── src/                    # solución .NET (módulos); front en src/Erp.Api/wwwroot
-└── tests/                  # pruebas xUnit
-```
-
-## Usar los comandos con otro asistente
-
-Los comandos viven en `docs/comandos/` como Markdown, así que sirven con cualquier asistente. En OpenCode se invocan como `/iniciar`; en Codex o cualquier otro, se escribe: *"Sigue `docs/comandos/iniciar.md`"*. Ambos leen `AGENTS.md` solos.
-
-## Ejecución
-
-La interfaz se abre desde la Api: `dotnet run --project src/Erp.Api` y entra a `http://localhost:5271/`; también se puede abrir `src/Erp.Api/wwwroot/index.html` directamente en Chrome o Edge, sin servidor. La comprobación rápida es `GET /api/salud`. Build y pruebas, desde la raíz: `dotnet build` y `dotnet test`. Consulta la [guía de la pantalla de acceso](docs/guias/acceso-aplicaciones.md).
-
-## Integrantes
-
-*(cada integrante agrega aquí su nombre en la tarjeta S1-03, practicando rama, commit y PR)*
+Los alcances y contratos de las áreas siguientes se redactan en su planning, usando las plantillas y la fuente vigente. Este repositorio no declara el estado del tablero remoto.

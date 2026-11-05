@@ -1,4 +1,4 @@
 ---
-description: Inicio de sesión: ubicarse y retomar el trabajo
+description: iniciar de sesión o sprint
 ---
-Lee y sigue al pie de la letra las instrucciones de `docs/comandos/iniciar.md`.
+Lee y sigue docs/comandos/iniciar.md respetando el alcance autorizado por el usuario.

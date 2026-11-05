@@ -1,4 +1,4 @@
 ---
-description: Planning del área nueva: niveles, contrato y tarjetas
+description: planning de sesión o sprint
 ---
-Lee y sigue al pie de la letra las instrucciones de `docs/comandos/planning.md`.
+Lee y sigue docs/comandos/planning.md respetando el alcance autorizado por el usuario.

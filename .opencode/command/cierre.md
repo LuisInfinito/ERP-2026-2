@@ -1,4 +1,4 @@
 ---
-description: Cierre de sesión: revisar qué guardar en el contexto
+description: cierre de sesión o sprint
 ---
-Lee y sigue al pie de la letra las instrucciones de `docs/comandos/cierre.md`.
+Lee y sigue docs/comandos/cierre.md respetando el alcance autorizado por el usuario.

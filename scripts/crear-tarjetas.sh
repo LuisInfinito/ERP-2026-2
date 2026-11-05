@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Carga las tarjetas de un borrador de sprint (docs/plan/sprint-NN.md) al tablero de GitHub:
-#   1. crea un Issue por tarjeta (o reutiliza el que ya exista con el mismo ID en el título),
+#   1. crea un Issue por tarjeta (rechaza la carga si ya existe el mismo ID en el título),
 #   2. le asigna su hito (milestone de la demo; lo crea si no existe),
 #   3. lo agrega al proyecto y llena sus campos: Status, Priority, Size, Estimate,
 #      Start date, Target date, Sprint y Prioridad,
 #   4. crea las relaciones "Blocked by" a partir de la columna "Depende de".
-# Después de cargar, el tablero de GitHub es la fuente de verdad (D22).
+# Después de cargar, el tablero de GitHub es la fuente de verdad.
 #
 # Uso:
 #   scripts/crear-tarjetas.sh                                   # ensayo: muestra qué haría, no toca GitHub
@@ -58,7 +58,7 @@ IDS=()
 declare -A TITULO TIPO DUENOS HORAS PRIORIDAD PRIORITY SIZE ESTIMATE INICIO FIN DEPENDE HITO CRITERIO
 while IFS='|' read -r _ id titulo tipo duenos horas prioridad priority size estimate inicio fin depende hito criterio _; do
   id="$(limpiar "${id:-}")"
-  [[ "$id" =~ ^S[0-9]+-[0-9]+$ ]] || continue
+  [[ "$id" =~ ^([A-Z]+|S[0-9]+)-[0-9]+$ ]] || continue
   IDS+=("$id")
   TITULO[$id]="$(limpiar "$titulo")";     TIPO[$id]="$(limpiar "$tipo")"
   DUENOS[$id]="$(limpiar "$duenos")";     HORAS[$id]="$(limpiar "$horas")"
@@ -70,8 +70,8 @@ while IFS='|' read -r _ id titulo tipo duenos horas prioridad priority size esti
 done < "$ARCHIVO"
 (( ${#IDS[@]} > 0 )) || { echo "No se encontraron tarjetas en $ARCHIVO"; exit 1; }
 
-# Status inicial: la fase actual (P0) va a Ready; las fases siguientes esperan en Backlog
-estado_de() { [[ "${PRIORITY[$1]}" == "P0" ]] && echo "Ready" || echo "Backlog"; }
+# Estado inicial: solo las tarjetas sin dependencias pueden quedar listas.
+estado_de() { [[ "${PRIORITY[$1]}" == "P0" ]] && vacio "${DEPENDE[$1]}" && echo "Ready" || echo "Backlog"; }
 
 # Validación del borrador: dependencias que no existen en la tabla
 for id in "${IDS[@]}"; do
@@ -152,6 +152,17 @@ if (( ${#faltan[@]} > 0 )); then
   exit 1
 fi
 
+# No sobrescribir tarjetas anteriores ni reiniciar sus estados.
+existentes="$(gh api --paginate "repos/{owner}/{repo}/issues?state=all&per_page=100" --jq '.[] | select(.pull_request | not) | .title')"
+for id in "${IDS[@]}"; do
+  while IFS= read -r titulo_existente; do
+    if [[ "${titulo_existente%% *}" == "$id" ]]; then
+      echo "El ID $id ya existe. Actualiza su tarjeta en el tablero; no se modificó GitHub."
+      exit 1
+    fi
+  done <<< "$existentes"
+done
+
 for et in aprendizaje codigo pruebas docs configuracion; do
   gh label create "$et" --force >/dev/null
 done
@@ -169,11 +180,11 @@ for id in "${IDS[@]}"; do
   fi
 done
 
-# Issues que ya existen (para no duplicar si se vuelve a ejecutar): "S1-07 ..." -> número e id
+# Issues que ya existen (para no duplicar si se vuelve a ejecutar): "COM-001 ..." -> número e id
 declare -A NUMERO ID_ISSUE
 while IFS=$'\t' read -r numero idbd titulo; do
   clave="${titulo%% *}"
-  [[ "$clave" =~ ^S[0-9]+-[0-9]+$ ]] && { NUMERO[$clave]="$numero"; ID_ISSUE[$clave]="$idbd"; }
+  [[ "$clave" =~ ^([A-Z]+|S[0-9]+)-[0-9]+$ ]] && { NUMERO[$clave]="$numero"; ID_ISSUE[$clave]="$idbd"; }
 done < <(gh api --paginate "repos/{owner}/{repo}/issues?state=all&per_page=100" \
            --jq '.[] | select(.pull_request | not) | "\(.number)\t\(.id)\t\(.title)"')
 
@@ -236,4 +247,4 @@ for id in "${IDS[@]}"; do
 done
 
 echo "Listo: ${#IDS[@]} tarjetas en el proyecto $GH_PROYECTO ($SPRINT)."
-echo "Revisa el tablero: S1-00 se mueve a mano a In Review hasta que Miguel la revise; al empezar cada fase, sus tarjetas pasan de Backlog a Ready."
+echo "Revisa responsables y dependencias. Mueve a Ready solo las tarjetas desbloqueadas."
