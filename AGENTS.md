@@ -2,9 +2,9 @@
 
 ERP académico para FAMIHOGAR SAC. Miguel tiene mayor experiencia general, Luis es el segundo y Pablo el menos experimentado. Miguel coordina lo técnico y acompaña al equipo. Código y documentación del dominio en español.
 
-## Estado inicial
-El proyecto empieza desde cero. Solo se conserva la interfaz HTML, CSS y JavaScript de wwwroot como material de partida, sin atribuirle tarjetas terminadas.
-No hay solución .NET, backend, base de datos, migraciones ni pruebas implementadas.
+## Estado
+El proyecto empezó desde cero. Solo se conserva la interfaz HTML, CSS y JavaScript de wwwroot como material de partida, sin atribuirle tarjetas terminadas.
+Al 2026-11-07 existen solución .NET mínima, API y pruebas de arranque (COM-002); no hay base de datos, migraciones ni CI. Esto está verificado en la máquina de Miguel, no en las de Luis y Pablo.
 Comercial ocupa el sprint 1, del 5 al 11 de noviembre de 2026. El calendario único está en [sprints](docs/plan/sprints.md).
 
 ## Flujo permanente
