@@ -1,23 +1,21 @@
-## Qué cambia
-<!-- Una línea por cambio relevante. Los identificadores de tarjeta van con su prefijo, por ejemplo COM-002. -->
--
+## Problema y resultado
+Describir qué cambia y por qué.
 
-## Evidencia
-<!-- Solo resultados realmente ejecutados. No escribir "probado" sin el comando y su salida. -->
-| Comprobación | Resultado |
-|---|---|
-|  |  |
+## Tarjeta
+Closes #N
 
-## Cómo verificarlo
-<!-- Pasos que otra persona puede repetir en su máquina. -->
-```bash
-dotnet build
-dotnet test
-```
+## Explicado con mis palabras
+Qué hace mi pieza y cómo la comprobé.
 
-## Alcance y límites
-<!-- Lo que esta entrega NO hace, las simulaciones y las deudas asumidas. -->
--
+## Validación
+- [ ] Criterio de aceptación demostrado.
+- [ ] Build y pruebas aplicables pasan; indicar resultados reales o justificar No aplica.
+- [ ] Reglas y fuentes documentadas cuando corresponde.
+- [ ] Historial, cadena y ficha cuando crea o cambia documentos.
+- [ ] Migración de Miguel cuando corresponde; ninguna credencial incluida.
+- [ ] Pantalla comprobada contra API cuando corresponde.
+- [ ] Documentación y explicación completadas antes de este PR.
+- [ ] Revisión por otra persona antes de integrar.
 
-## Tarjetas
-<!-- Cierra COM-... Indicar cuáles quedan pendientes y por qué. -->
+## Limitaciones
+Simulaciones, dependencias o pendientes explícitos.
