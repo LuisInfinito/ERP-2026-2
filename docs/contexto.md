@@ -10,3 +10,4 @@
 - COM-001 acordó estados de OV y parámetros ficticios (DEC-001). Por acuerdo del equipo, los horarios escalonados no se documentan.
 - Calendario y método: docs/plan/sprints.md. El tablero remoto no ha sido alterado por este reinicio.
 - Existe `Erp.slnx`, API y pruebas de arranque en la máquina de Miguel. Al 2026-11-07 aún no hay base de datos, migraciones ni CI.
+- 2026-11-07 · COM-003: entorno de Luis verificado con SDK 10.0.401, build correcto, 2 pruebas superadas y respuestas de `/` y `/api/estado`. Luis confirmó la revisión manual y explicó los límites del estado y los roles simulados. Evidencia e inventario en las guías de preparación e interfaz; cierre local validado y listo para PR, con rama de trabajo, commit y subida pendientes de autorización. Revisión e integración pendientes; no se declara Done. No acredita la máquina de Pablo ni módulos comerciales implementados.
