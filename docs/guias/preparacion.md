@@ -2,7 +2,7 @@
 
 [Índice](../../README.md)
 
-Esta guía define tareas pendientes de COM-002 a COM-005; no acredita instalación ni funcionamiento en las máquinas del equipo.
+Esta guía define tareas de COM-002 a COM-005. Al 2026-11-07, COM-002 está verificada en la máquina de Miguel; no acredita instalación ni funcionamiento en las máquinas de Luis y Pablo.
 
 1. Cada integrante verifica acceso al repositorio, editor y herramientas. Practicar rama, commit y PR con una tarea real.
 2. Elegir una versión LTS compatible de .NET, fijar su SDK en global.json y documentar la instalación.
